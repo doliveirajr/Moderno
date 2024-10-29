@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moderno", "Moderno.csproj", "{B499F374-1979-4CD5-BD25-A55D87A072BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDV", "..\..\PDV\PDV.csproj", "{2F9949E3-711E-42BD-91ED-CC26AD7295A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B499F374-1979-4CD5-BD25-A55D87A072BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B499F374-1979-4CD5-BD25-A55D87A072BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B499F374-1979-4CD5-BD25-A55D87A072BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B499F374-1979-4CD5-BD25-A55D87A072BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F9949E3-711E-42BD-91ED-CC26AD7295A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F9949E3-711E-42BD-91ED-CC26AD7295A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F9949E3-711E-42BD-91ED-CC26AD7295A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F9949E3-711E-42BD-91ED-CC26AD7295A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47AD0F5F-5EFC-4B58-A213-C1D04346A3C1}
+	EndGlobalSection
+EndGlobal
