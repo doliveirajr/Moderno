@@ -11,7 +11,7 @@ namespace Moderno
     {
         public static List<string> ListaDeCores = new List<string>()
         {
-            "#f33d17", "#46cc25", "#cc4125", "#8c0a0e", "#0a8c74", "#5b169c", "#0c2b7a", "#15bd60", "#1f1f7d", "#e6e60e"
+            "#9BE0BD", "#A4D7E0", "#A9E1D8", "#96E0A2", "#9FC1E0"
         };
 
         public static Color MudarBrilho(Color cor, double fatorDeCorrecao)

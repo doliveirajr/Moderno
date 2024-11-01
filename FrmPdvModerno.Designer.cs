@@ -91,7 +91,6 @@
             // 
             // lblPanelHome
             // 
-            this.lblPanelHome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPanelHome.AutoSize = true;
             this.lblPanelHome.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPanelHome.ForeColor = System.Drawing.SystemColors.Control;
@@ -273,13 +272,14 @@
             // 
             // logoPanel
             // 
-            this.logoPanel.BackgroundImage = global::Moderno.Properties.Resources.C_Sharp_Logo_2;
+            this.logoPanel.BackgroundImage = global::Moderno.Properties.Resources.Home;
             this.logoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.logoPanel.Location = new System.Drawing.Point(0, 0);
             this.logoPanel.Name = "logoPanel";
             this.logoPanel.Size = new System.Drawing.Size(220, 100);
             this.logoPanel.TabIndex = 0;
+            this.logoPanel.Click += new System.EventHandler(this.logoPanel_Click);
             // 
             // FrmPdvModerno
             // 

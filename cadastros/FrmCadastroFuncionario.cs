@@ -88,6 +88,7 @@ namespace Moderno.cadastros
             comboCargo.Text = string.Empty;
             textNascimento.Text = string.Empty;
             textTelefone.Text = string.Empty;
+            textEmail.Text = string.Empty;
         }
 
         private void DesabilitarCampos()
@@ -104,6 +105,7 @@ namespace Moderno.cadastros
             textEndereco.Enabled = false;
             textNascimento.Enabled = false;
             textEndereco.Enabled = false;
+            textEmail.Enabled = false;
             comboCargo.Enabled = false;
             textTelefone.Enabled = false;
         }
@@ -117,6 +119,7 @@ namespace Moderno.cadastros
             textEndereco.Enabled = true;
             comboCargo.Enabled = true;
             textTelefone.Enabled = true;
+            textEmail.Enabled = true;
             btnNovo.Enabled = false;
             btnCancelar.Enabled = true;
         }
@@ -161,16 +164,17 @@ namespace Moderno.cadastros
             dataGrid.Columns[2].HeaderText = "CPF";
             dataGrid.Columns[3].HeaderText = "Aniversario";
             dataGrid.Columns[4].HeaderText = "Tel.:";
-            dataGrid.Columns[5].HeaderText = "Endereço";
-            dataGrid.Columns[6].HeaderText = "Cargo";
-            dataGrid.Columns[7].HeaderText = "Data de Inicio";
+            dataGrid.Columns[5].HeaderText = "Email";
+            dataGrid.Columns[6].HeaderText = "Endereço";
+            dataGrid.Columns[7].HeaderText = "Cargo";
+            dataGrid.Columns[8].HeaderText = "Data de Inicio";
             dataGrid.Columns[0].Visible = false;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
 
-            if (ChecaCampos())
+            if (ChecaCampos() && validar.ValidarEmail(textEmail.Text))
             {
                 if (validar.CpfExiste(textCpf.Text, "funcionarios"))
                 {
@@ -181,6 +185,7 @@ namespace Moderno.cadastros
                                                     $"CPF: {textCpf.Text}\n" +
                                                     $"Data de Nascimento: {textNascimento.Text}\n" +
                                                     $"Telefone: {textTelefone.Text}\n" +
+                                                    $"Email: {textEmail.Text}" +
                                                     $"Endereço: {textEndereco.Text}\n" +
                                                     $"Cargo: {comboCargo.Text}",
                                                     MessageBoxTitle);
@@ -190,13 +195,14 @@ namespace Moderno.cadastros
                     return;
                 }
                 con.AbrirConexao();
-                sql = "INSERT INTO funcionarios(nome, cpf, data_nascimento, telefone, endereco, cargo, data_cadastro) VALUES(@nome, @cpf, @data_nascimento, @telefone, @endereco, @cargo, curDate())";
+                sql = "INSERT INTO funcionarios(nome, cpf, data_nascimento, telefone, email, endereco, cargo, data_cadastro) VALUES(@nome, @cpf, @data_nascimento, @telefone, @email, @endereco, @cargo, curDate())";
                 cmd = new MySqlCommand(sql, con.conn);
 
                 cmd.Parameters.AddWithValue("@nome", textNome.Text);
                 cmd.Parameters.AddWithValue("@cpf", textCpf.Text);
                 cmd.Parameters.AddWithValue("@data_nascimento", textNascimento.Text);
                 cmd.Parameters.AddWithValue("@telefone", textTelefone.Text);
+                cmd.Parameters.AddWithValue("@email", textEmail.Text);
                 cmd.Parameters.AddWithValue("@endereco", textEndereco.Text);
                 cmd.Parameters.AddWithValue("@cargo", comboCargo.Text);
 
@@ -235,7 +241,7 @@ namespace Moderno.cadastros
 
                 con.AbrirConexao();
                 sql = "UPDATE funcionarios " +
-                      "SET nome = @nome, cpf = @cpf, data_nascimento = @data_nascimento, telefone = @telefone, endereco = @endereco, cargo = @cargo " +
+                      "SET nome = @nome, cpf = @cpf, data_nascimento = @data_nascimento, telefone = @telefone, email = @email, endereco = @endereco, cargo = @cargo " +
                       $"WHERE id = {id}";
                 cmd = new MySqlCommand(sql, con.conn);
 
@@ -243,6 +249,7 @@ namespace Moderno.cadastros
                 cmd.Parameters.AddWithValue("@cpf", textCpf.Text);
                 cmd.Parameters.AddWithValue("@data_nascimento", textNascimento.Text);
                 cmd.Parameters.AddWithValue("@telefone", textTelefone.Text);
+                cmd.Parameters.AddWithValue("@email", textEmail.Text);
                 cmd.Parameters.AddWithValue("@endereco", textEndereco.Text);
                 cmd.Parameters.AddWithValue("@cargo", comboCargo.Text);
 
@@ -300,8 +307,9 @@ namespace Moderno.cadastros
                 textCpf.Text = dataGrid.CurrentRow.Cells[2].Value.ToString();
                 textNascimento.Text = dataGrid.CurrentRow.Cells[3].Value.ToString();
                 textTelefone.Text = dataGrid.CurrentRow.Cells[4].Value.ToString();
-                textEndereco.Text = dataGrid.CurrentRow.Cells[5].Value.ToString();
-                comboCargo.Text = dataGrid.CurrentRow.Cells[6].Value.ToString();
+                textEmail.Text = dataGrid.CurrentRow.Cells[5].Value.ToString();
+                textEndereco.Text = dataGrid.CurrentRow.Cells[6].Value.ToString();
+                comboCargo.Text = dataGrid.CurrentRow.Cells[7].Value.ToString();
                 btnEditar.Enabled = true;
                 btnSalvar.Enabled = false;
                 btnExcluir.Enabled = true;

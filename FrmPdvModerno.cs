@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moderno.cadastros;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -85,7 +86,11 @@ namespace Moderno
                 activeForm.Close();
             }
 
-            AtivaBotao(btnSender);
+            if(childForm.Text != "Home")
+            {
+                AtivaBotao(btnSender);
+            }
+
             activeForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -107,13 +112,13 @@ namespace Moderno
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             AtivaBotao(sender);
-            OpenChildForm(new cadastros.FrmCadastroCliente(), sender);
+            OpenChildForm(new cadastros.FrmCadastroFuncionario(), sender);
         }
 
         private void btnClients_Click(object sender, EventArgs e)
         {
             AtivaBotao(sender);
-            OpenChildForm(new cadastros.FrmCadastroFuncionario(), sender);
+            OpenChildForm(new cadastros.FrmCadastroCliente(), sender);
         }
 
         private void btnSales_Click(object sender, EventArgs e)
@@ -130,13 +135,15 @@ namespace Moderno
         private void btnReport_Click(object sender, EventArgs e)
         {
             AtivaBotao(sender);
-        }
-
-        
+        }        
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dr = MeuMsgBox.Mostrar("Deseja sair ?", "Menu Principal", "Sim", "Não");
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();                
+            }
         }
 
         private void btnMaximizar_Click(object sender, EventArgs e)
@@ -154,13 +161,22 @@ namespace Moderno
 
         private void FrmPdvModerno_Load(object sender, EventArgs e)
         {
-
+            OpenChildForm(new cadastros.FrmHomePage(), sender);
         }
 
         private void panelHome_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void logoPanel_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new cadastros.FrmHomePage(), sender);
+            panelHome.BackColor = EsquemaDeCores.MudarBrilho(cor, -0.65);
+            logoPanel.BackColor = EsquemaDeCores.MudarBrilho(cor, 0.05);
+            lblPanelHome.ForeColor = System.Drawing.Color.White;
+            panelDesktop.BackColor = EsquemaDeCores.MudarBrilho(cor, 0.85);
         }
     }
 }

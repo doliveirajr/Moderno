@@ -37,7 +37,6 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.comboTipo = new System.Windows.Forms.ComboBox();
             this.textEndereco = new System.Windows.Forms.TextBox();
             this.textCadastro = new System.Windows.Forms.TextBox();
             this.textNome = new System.Windows.Forms.TextBox();
@@ -47,6 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textEmail = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,22 +135,13 @@
             this.dataGrid.TabIndex = 49;
             this.dataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellClick);
             // 
-            // comboTipo
-            // 
-            this.comboTipo.Enabled = false;
-            this.comboTipo.FormattingEnabled = true;
-            this.comboTipo.Location = new System.Drawing.Point(422, 95);
-            this.comboTipo.Name = "comboTipo";
-            this.comboTipo.Size = new System.Drawing.Size(147, 21);
-            this.comboTipo.TabIndex = 47;
-            // 
             // textEndereco
             // 
             this.textEndereco.Enabled = false;
             this.textEndereco.Location = new System.Drawing.Point(16, 135);
             this.textEndereco.Name = "textEndereco";
             this.textEndereco.Size = new System.Drawing.Size(554, 20);
-            this.textEndereco.TabIndex = 48;
+            this.textEndereco.TabIndex = 49;
             // 
             // textCadastro
             // 
@@ -191,9 +182,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(419, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 13);
+            this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 40;
-            this.label4.Text = "Tipo de Produto";
+            this.label4.Text = "Email:";
             // 
             // label3
             // 
@@ -222,11 +213,20 @@
             this.label1.TabIndex = 37;
             this.label1.Text = "Nome";
             // 
+            // textEmail
+            // 
+            this.textEmail.Enabled = false;
+            this.textEmail.Location = new System.Drawing.Point(422, 92);
+            this.textEmail.Name = "textEmail";
+            this.textEmail.Size = new System.Drawing.Size(240, 20);
+            this.textEmail.TabIndex = 48;
+            // 
             // FrmCadastroFornecedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textEmail);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.textTelefone);
             this.Controls.Add(this.textCnpj);
@@ -235,7 +235,6 @@
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.dataGrid);
-            this.Controls.Add(this.comboTipo);
             this.Controls.Add(this.textEndereco);
             this.Controls.Add(this.textCadastro);
             this.Controls.Add(this.textNome);
@@ -265,7 +264,6 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.DataGridView dataGrid;
-        private System.Windows.Forms.ComboBox comboTipo;
         private System.Windows.Forms.TextBox textEndereco;
         private System.Windows.Forms.TextBox textCadastro;
         private System.Windows.Forms.TextBox textNome;
@@ -275,5 +273,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textEmail;
     }
 }

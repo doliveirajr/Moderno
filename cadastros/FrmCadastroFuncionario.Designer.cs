@@ -46,6 +46,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textEmail = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,7 +133,7 @@
             this.dataGrid.Location = new System.Drawing.Point(16, 194);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.Size = new System.Drawing.Size(646, 150);
-            this.dataGrid.TabIndex = 31;
+            this.dataGrid.TabIndex = 32;
             this.dataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellClick);
             // 
             // comboCargo
@@ -141,7 +143,7 @@
             this.comboCargo.Location = new System.Drawing.Point(422, 89);
             this.comboCargo.Name = "comboCargo";
             this.comboCargo.Size = new System.Drawing.Size(147, 21);
-            this.comboCargo.TabIndex = 29;
+            this.comboCargo.TabIndex = 30;
             // 
             // textEndereco
             // 
@@ -149,7 +151,7 @@
             this.textEndereco.Location = new System.Drawing.Point(16, 132);
             this.textEndereco.Name = "textEndereco";
             this.textEndereco.Size = new System.Drawing.Size(554, 20);
-            this.textEndereco.TabIndex = 30;
+            this.textEndereco.TabIndex = 31;
             // 
             // textNascimento
             // 
@@ -221,11 +223,30 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Nome";
             // 
+            // textEmail
+            // 
+            this.textEmail.Enabled = false;
+            this.textEmail.Location = new System.Drawing.Point(153, 89);
+            this.textEmail.Name = "textEmail";
+            this.textEmail.Size = new System.Drawing.Size(216, 20);
+            this.textEmail.TabIndex = 29;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(150, 73);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 13);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "Email";
+            // 
             // FrmCadastroFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textEmail);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.textTelefone);
             this.Controls.Add(this.textCpf);
@@ -273,5 +294,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textEmail;
+        private System.Windows.Forms.Label label6;
     }
 }

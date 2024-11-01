@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,7 +45,7 @@ namespace Moderno.cadastros
             }
             if (textCnpj.Text == "  .   .   /    -" || textCnpj.Text.Length < 14)
             {
-                MessageBox.Show("Preencha o campo Cpf", MessageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Preencha o campo Cnpj", MessageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textCnpj.Focus();
                 return false;
             }
@@ -85,6 +86,7 @@ namespace Moderno.cadastros
             textEndereco.Text = string.Empty;
             textCadastro.Text = string.Empty;
             textTelefone.Text = string.Empty;
+            textEmail.Text = string.Empty;
         }
 
         private void DesabilitarCampos()
@@ -100,8 +102,8 @@ namespace Moderno.cadastros
             textCnpj.Enabled = false;
             textEndereco.Enabled = false;
             textCadastro.Enabled = false;
-            textEndereco.Enabled = false;
             textTelefone.Enabled = false;
+            textEmail.Enabled = false;
         }
 
         private void HabilitarCampos()
@@ -110,8 +112,8 @@ namespace Moderno.cadastros
             textCnpj.Enabled = true;
             textEndereco.Enabled = true;
             textCadastro.Enabled = true;
-            textEndereco.Enabled = true;
             textTelefone.Enabled = true;
+            textEmail.Enabled = true;
             btnNovo.Enabled = false;
             btnCancelar.Enabled = true;
         }
@@ -139,14 +141,15 @@ namespace Moderno.cadastros
             dataGrid.Columns[1].HeaderText = "Fornecedor";
             dataGrid.Columns[2].HeaderText = "CNPJ";
             dataGrid.Columns[3].HeaderText = "Tel.:";
-            dataGrid.Columns[4].HeaderText = "Endereço";
-            dataGrid.Columns[5].HeaderText = "Data de Inicio";
+            dataGrid.Columns[4].HeaderText = "Email";
+            dataGrid.Columns[5].HeaderText = "Endereço";
+            dataGrid.Columns[6].HeaderText = "Data de Inicio";
             dataGrid.Columns[0].Visible = false;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (ChecaCampos())
+            if (ChecaCampos() && validar.ValidarEmail(textEmail.Text))
             {
                 if (validar.CnpjExiste(textCnpj.Text, "fornecedores"))
                 {
@@ -157,7 +160,8 @@ namespace Moderno.cadastros
                                                     $"CNPJ: {textCnpj.Text}\n" +
                                                     $"Data de Nascimento: {textCadastro.Text}\n" +
                                                     $"Telefone: {textTelefone.Text}\n" +
-                                                    $"Endereço: {textEndereco.Text}\n",
+                                                    $"Endereço: {textEndereco.Text}\n" +
+                                                    $"Email: {textEmail.Text}",
                                                     MessageBoxTitle);
 
                 if (dr != DialogResult.Yes)
@@ -165,12 +169,13 @@ namespace Moderno.cadastros
                     return;
                 }
                 con.AbrirConexao();
-                sql = "INSERT INTO fornecedores(nome, cnpj, telefone, endereco, data_cadastro) VALUES(@nome, @cnpj, curDate(), @telefone, @endereco)";
+                sql = "INSERT INTO fornecedores(nome, cnpj, telefone, email, endereco, data_cadastro) VALUES(@nome, @cnpj, @telefone, @email, @endereco, curDate())";
                 cmd = new MySqlCommand(sql, con.conn);
 
                 cmd.Parameters.AddWithValue("@nome", textNome.Text);
                 cmd.Parameters.AddWithValue("@cnpj", textCnpj.Text);
                 cmd.Parameters.AddWithValue("@telefone", textTelefone.Text);
+                cmd.Parameters.AddWithValue("@email", textEmail.Text);
                 cmd.Parameters.AddWithValue("@endereco", textEndereco.Text);
                 cmd.Parameters.AddWithValue("@data_cadastro", textCadastro.Text);
 
@@ -203,19 +208,20 @@ namespace Moderno.cadastros
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (ChecaCampos())
+            if (ChecaCampos() && validar.ValidarEmail(textEmail.Text))
             {
-                string id = dataGrid.CurrentRow.Cells[0].Value.ToString();
+                id = dataGrid.CurrentRow.Cells[0].Value.ToString();
 
                 con.AbrirConexao();
                 sql = "UPDATE fornecedores " +
-                      "SET nome = @nome, cnpj = @cnpj, telefone = @telefone, endereco = @endereco, data_cadastro = @data_cadastro " +
+                      "SET nome = @nome, cnpj = @cnpj, telefone = @telefone, email = @email, endereco = @endereco, data_cadastro = @data_cadastro " +
                       $"WHERE id_fornecedor = {id}";
                 cmd = new MySqlCommand(sql, con.conn);
 
                 cmd.Parameters.AddWithValue("@nome", textNome.Text);
                 cmd.Parameters.AddWithValue("@cnpj", textCnpj.Text);
                 cmd.Parameters.AddWithValue("@telefone", textTelefone.Text);
+                cmd.Parameters.AddWithValue("@email", textEmail.Text);
                 cmd.Parameters.AddWithValue("@endereco", textEndereco.Text);
                 cmd.Parameters.AddWithValue("@data_cadastro", textCadastro.Text);
 
@@ -245,7 +251,7 @@ namespace Moderno.cadastros
                 return;
             }
 
-            string id = dataGrid.CurrentRow.Cells[0].Value.ToString();
+            id = dataGrid.CurrentRow.Cells[0].Value.ToString();
 
             con.AbrirConexao();
             sql = "DELETE FROM fornecedores " +
